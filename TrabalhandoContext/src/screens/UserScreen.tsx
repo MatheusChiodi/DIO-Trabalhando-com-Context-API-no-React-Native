@@ -12,7 +12,7 @@ type UserScreenProp = {
 export default function UserScreen({ route }: UserScreenProp) {
   const { userName } = route.params;
   const UserContextValue = useContext(UserContext);
-  const name = UserContextValue?.nome || 'Nenhum nome encontrado';
+  const name = UserContextValue?.loginName || 'Nenhum nome encontrado';
 
   return (
     <View>

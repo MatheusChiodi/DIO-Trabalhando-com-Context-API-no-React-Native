@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../../App';
+
+import { UserContext } from '../contexts/userContext';
 
 type HomeScreenProps = {
   navigation: StackNavigationProp<RootStackParamList, 'Home'>;
@@ -10,8 +12,10 @@ type HomeScreenProps = {
 
 export default function HomeScreen({ navigation }: HomeScreenProps) {
   const [name, setName] = useState('');
+  const userContext = useContext(UserContext);
 
   const navigateToUserScreen = () => {
+    userContext?.saveLoginUserToCache(name);
     navigation.navigate('User', { userName: name });
   };
 
