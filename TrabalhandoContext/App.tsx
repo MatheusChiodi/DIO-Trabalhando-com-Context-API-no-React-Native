@@ -7,6 +7,8 @@ import UserScreen from './src/screens/UserScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import UserContextProvider from './src/contexts/userContext';
+
 export type RootStackParamList = {
   Home: undefined;
   User: { userName: string };
@@ -18,10 +20,12 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="User" component={UserScreen} />
-        </Stack.Navigator>
+        <UserContextProvider>
+          <Stack.Navigator>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="User" component={UserScreen} />
+          </Stack.Navigator>
+        </UserContextProvider>
       </NavigationContainer>
       <StatusBar style="auto" />
     </>
